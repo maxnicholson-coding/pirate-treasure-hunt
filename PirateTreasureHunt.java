@@ -47,14 +47,18 @@ public class PirateTreasureHunt
     //the player going to the beach
     public static void move() {
         System.out.println("You exit your cabin, shovel in hand, and look out into a large forest.\nThe map would be very clear if whoever wrote it bothered to draw a compass.");
-        System.out.println("The trees block any way of knowing where you would be going");
+        System.out.println("The trees block any way of knowing where you would be going.");
         //take decision
-        char moveChoice = decision("Go left.", "Go right.");
+        char moveChoice = decision("Go left.", "Go right.", "Stay home");
         //sends player on which route they took (left -> graveyard, right -> beach)
         if (moveChoice == 'a') {
             graveyard();
         } else if (moveChoice == 'b') {
             beach();
+        } else if (moveChoice == 'c') {
+            System.out.println("Maybe it is better to relax and think about this.\nAs far as you know, you are the only one with the map.");
+            System.out.println("It is not like the treasure is going anywhere.\nDo you even really need it?");
+            theEnd("Relaxing Ending");
         } else { 
             impossible();
         }
@@ -102,7 +106,7 @@ public class PirateTreasureHunt
             theEnd("Surrender Ending");
         }
     }
-    //lets the player make a decision
+    //lets the player make a decision out of 2 options
     public static char decision(String a, String b) {
         //initialize scanner
         Scanner input = new Scanner(System.in);
@@ -117,6 +121,26 @@ public class PirateTreasureHunt
                 return 'b';
             } else {
                 System.out.println("Please answer with the letter A or B.");
+            }
+        }
+    }
+    //lets the player make a decision out of 3 options
+    public static char decision(String a, String b, String c) {
+        //initialize scanner
+        Scanner input = new Scanner(System.in);
+        //display what the choice is
+        System.out.println("\nWill you:\nA. " + a + "\nB. " + b + "\nC. " + c);
+        while(true) {
+            String choice = input.nextLine();
+            //returns what the player chose or asks again if invalid
+            if (choice.equals("a") || choice.equals("A")) {
+                return 'a';
+            } else if (choice.equals("b") || choice.equals("B")) {
+                return 'b';
+            } else if (choice.equals("c") || choice.equals("C")) {
+                return 'c';
+            } else {
+                System.out.println("Please answer with the letter A, B, or C.");
             }
         }
     }
